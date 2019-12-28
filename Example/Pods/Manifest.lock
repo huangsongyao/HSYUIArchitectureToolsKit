@@ -1,0 +1,111 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - HSYMacroKit (0.1.4)
+  - HSYMethodsToolsKit (0.1.7):
+    - HSYMacroKit
+    - JSONModel
+    - Masonry
+    - ReactiveObjC
+    - SDWebImage
+  - HSYNetworkToolsKit (0.1.1):
+    - AFNetworking
+    - HSYMacroKit
+    - HSYMethodsToolsKit
+  - HSYToolsClassKit (0.1.0):
+    - HSYMacroKit
+    - HSYMethodsToolsKit
+    - ReactiveObjC
+  - HSYUIArchitectureToolsKit (0.1.0):
+    - HSYMacroKit
+    - HSYMethodsToolsKit
+    - HSYNetworkToolsKit
+    - HSYToolsClassKit
+    - MJRefresh
+  - JSONModel (1.8.0)
+  - Masonry (1.1.0)
+  - MJRefresh (3.3.1)
+  - ReactiveObjC (3.1.1)
+  - SDWebImage (5.4.1):
+    - SDWebImage/Core (= 5.4.1)
+  - SDWebImage/Core (5.4.1)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - HSYMacroKit (from `https://github.com/huangsongyao/HSYMacroKit.git`)
+  - HSYMethodsToolsKit (from `https://github.com/huangsongyao/HSYMethodsToolsKit.git`)
+  - HSYNetworkToolsKit (from `https://github.com/huangsongyao/HSYNetworkToolsKit.git`)
+  - HSYToolsClassKit (from `https://github.com/huangsongyao/HSYToolsClassKit.git`)
+  - HSYUIArchitectureToolsKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - FBSnapshotTestCase
+    - JSONModel
+    - Masonry
+    - MJRefresh
+    - ReactiveObjC
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  HSYMacroKit:
+    :git: https://github.com/huangsongyao/HSYMacroKit.git
+  HSYMethodsToolsKit:
+    :git: https://github.com/huangsongyao/HSYMethodsToolsKit.git
+  HSYNetworkToolsKit:
+    :git: https://github.com/huangsongyao/HSYNetworkToolsKit.git
+  HSYToolsClassKit:
+    :git: https://github.com/huangsongyao/HSYToolsClassKit.git
+  HSYUIArchitectureToolsKit:
+    :path: "../"
+
+CHECKOUT OPTIONS:
+  HSYMacroKit:
+    :commit: 16c2690a2f4315f0ddf1417bb11db33ffb36ac8b
+    :git: https://github.com/huangsongyao/HSYMacroKit.git
+  HSYMethodsToolsKit:
+    :commit: bda0a2bd1d89f7e07ae707c5d9019d401b13071f
+    :git: https://github.com/huangsongyao/HSYMethodsToolsKit.git
+  HSYNetworkToolsKit:
+    :commit: fd0d9a54497189f861f3536a316aa49f005dff40
+    :git: https://github.com/huangsongyao/HSYNetworkToolsKit.git
+  HSYToolsClassKit:
+    :commit: 505a8856947605c699ffe289755388c77b2e6eef
+    :git: https://github.com/huangsongyao/HSYToolsClassKit.git
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  HSYMacroKit: 382477fb48caa2919542868a73ccc473bb331997
+  HSYMethodsToolsKit: f85ad2f542b19969c0d9c01c90b53b4734608671
+  HSYNetworkToolsKit: 48e6612ab617656db5a5e63ed08e253991e1d3af
+  HSYToolsClassKit: 073d79d378e6d2a72861bf84bd954982a3f87b28
+  HSYUIArchitectureToolsKit: 6c511aec16acf2237c8eac615b53fa400bc81497
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
+
+PODFILE CHECKSUM: e4943e290efd9dc5d88bbb6f8d82c0d99dc3cf40
+
+COCOAPODS: 1.7.5

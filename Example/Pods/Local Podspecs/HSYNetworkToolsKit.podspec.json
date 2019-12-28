@@ -1,0 +1,33 @@
+{
+  "name": "HSYNetworkToolsKit",
+  "version": "0.1.1",
+  "summary": "A short description of HSYNetworkToolsKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/huangsongyao/HSYNetworkToolsKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "317398895@qq.com": "317398895@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/huangsongyao/HSYNetworkToolsKit.git",
+    "tag": "0.1.1"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HSYNetworkToolsKit/Classes/**/*.{h,m}",
+  "dependencies": {
+    "AFNetworking": [
+
+    ],
+    "HSYMethodsToolsKit": [
+
+    ],
+    "HSYMacroKit": [
+
+    ]
+  }
+}

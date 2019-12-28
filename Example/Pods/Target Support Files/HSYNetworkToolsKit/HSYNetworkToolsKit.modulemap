@@ -1,0 +1,6 @@
+framework module HSYNetworkToolsKit {
+  umbrella header "HSYNetworkToolsKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

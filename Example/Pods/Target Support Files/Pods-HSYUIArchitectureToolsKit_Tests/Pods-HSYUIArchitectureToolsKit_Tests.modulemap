@@ -1,0 +1,6 @@
+framework module Pods_HSYUIArchitectureToolsKit_Tests {
+  umbrella header "Pods-HSYUIArchitectureToolsKit_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module HSYUIArchitectureToolsKit {
+  umbrella header "HSYUIArchitectureToolsKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
