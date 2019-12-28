@@ -83,7 +83,7 @@ CHECKOUT OPTIONS:
     :commit: 16c2690a2f4315f0ddf1417bb11db33ffb36ac8b
     :git: https://github.com/huangsongyao/HSYMacroKit.git
   HSYMethodsToolsKit:
-    :commit: bda0a2bd1d89f7e07ae707c5d9019d401b13071f
+    :commit: 3c4799aecdbd6835a1208df29ee8bfcb3f28f0dd
     :git: https://github.com/huangsongyao/HSYMethodsToolsKit.git
   HSYNetworkToolsKit:
     :commit: fd0d9a54497189f861f3536a316aa49f005dff40
