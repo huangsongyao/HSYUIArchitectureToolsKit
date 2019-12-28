@@ -83,10 +83,10 @@ CHECKOUT OPTIONS:
     :commit: 16c2690a2f4315f0ddf1417bb11db33ffb36ac8b
     :git: https://github.com/huangsongyao/HSYMacroKit.git
   HSYMethodsToolsKit:
-    :commit: bda0a2bd1d89f7e07ae707c5d9019d401b13071f
+    :commit: b0956ae87fe1967724a8877fc9b162642bd5fd6b
     :git: https://github.com/huangsongyao/HSYMethodsToolsKit.git
   HSYNetworkToolsKit:
-    :commit: fd0d9a54497189f861f3536a316aa49f005dff40
+    :commit: 0b3aa2a2fdda0b4483e5806627f728ddf3f74abc
     :git: https://github.com/huangsongyao/HSYNetworkToolsKit.git
   HSYToolsClassKit:
     :commit: 505a8856947605c699ffe289755388c77b2e6eef
@@ -99,7 +99,7 @@ SPEC CHECKSUMS:
   HSYMethodsToolsKit: f85ad2f542b19969c0d9c01c90b53b4734608671
   HSYNetworkToolsKit: 48e6612ab617656db5a5e63ed08e253991e1d3af
   HSYToolsClassKit: 073d79d378e6d2a72861bf84bd954982a3f87b28
-  HSYUIArchitectureToolsKit: 6c511aec16acf2237c8eac615b53fa400bc81497
+  HSYUIArchitectureToolsKit: 67f66dfd92d01f72235270346db9970000d5af12
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237

@@ -24,6 +24,10 @@
       "HSYUIArchitectureToolsKit/Assets/*.png"
     ]
   },
+  "frameworks": [
+    "UIKit",
+    "Foundation"
+  ],
   "dependencies": {
     "HSYMethodsToolsKit": [
 

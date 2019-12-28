@@ -10,6 +10,7 @@
 #import "UIView+Frame.h"
 #import "UILabel+SuggestSize.h"
 #import "NSString+StringSize.h"
+#import "NSBundle+PrivateFileResource.h"
 #import <HSYMacroKit/HSYToolsMacro.h>
 
 @implementation UINavigationBar (NavigationItem)
@@ -18,8 +19,8 @@
 {
     NSMutableArray<UIBarButtonItem *> *barButtonItems = [NSMutableArray arrayWithCapacity:paramters.count];
     for (NSDictionary *paramter in paramters) {
-        UIImage *image = [UIImage imageNamed:[paramter.allValues.firstObject allKeys].firstObject];
-        UIImage *hightlightImage = [UIImage imageNamed:[paramter.allValues.firstObject allObjects].firstObject];
+        UIImage *image = [NSBundle hsy_imageForBundle:[paramter.allValues.firstObject allKeys].firstObject];
+        UIImage *hightlightImage = [NSBundle hsy_imageForBundle:[paramter.allValues.firstObject allObjects].firstObject];
         UIButton *barButton = [self.class hsy_buttonWithEdgeInsets:left forButtonTag:[paramter.allKeys.firstObject integerValue] clickedOnAction:^(UIButton *button) {
             if (next) {
                 next(button, button.tag);

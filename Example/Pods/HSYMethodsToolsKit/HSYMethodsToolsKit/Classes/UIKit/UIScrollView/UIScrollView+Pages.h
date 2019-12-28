@@ -107,6 +107,13 @@ typedef NS_ENUM(NSUInteger, kHSYCocoaKitScrollDirection) {
  */
 - (UIView *)hsy_subview:(NSInteger)forIndex;
 
+/**
+ 返回self.hsy_subviews或者self.subviews
+
+ @return self.hsy_subviews或者self.subviews
+ */
+- (NSArray<UIView *> *)hsy_thisSubviews;
+
 @end
 
 NS_ASSUME_NONNULL_END
