@@ -108,7 +108,7 @@ if [[ $? -eq 0 ]]; then
 		read -p "这个私有库中是否引用了其他私有库？ -> 引用过[y] -> 没引用过[n]：" prevateIncludeOtherPrivates
 		if [[ $isyes == *$prevateIncludeOtherPrivates* ]]; then
 			read -p "请输入所引用的私有库的git仓库地址，若有多个，请用[,]逗号隔开：" thisprivates
-			pod spec lint $hsyCocoapodsSDK.podspec --sources="$thisprivates, https://github.com/CocoaPods/Specs.git" --allow-warnings --use-libraries
+			pod spec lint $hsyCocoapodsSDK.podspec --sources="$thisprivates, https://github.com/CocoaPods/Specs.git" --allow-warnings --use-libraries --verbose
 		else
 			pod spec lint $hsyCocoapodsSDK.podspec --allow-warnings --use-libraries
 		fi
