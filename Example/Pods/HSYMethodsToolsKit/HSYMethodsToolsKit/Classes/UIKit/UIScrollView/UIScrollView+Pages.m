@@ -162,7 +162,7 @@ static NSString *kHSYMethodsToolsPrivateSubviewsForKey = @"HSYMethodsToolsPrivat
 
 - (UIView *)hsy_subview:(NSInteger)forIndex;
 {
-    NSArray *subviews = (self.subviews.count > 0 ? self.subviews : self.subviews);
+    NSArray *subviews = (self.hsy_subviews.count > 0 ? self.hsy_subviews : self.subviews);
     return subviews[forIndex];
 }
 

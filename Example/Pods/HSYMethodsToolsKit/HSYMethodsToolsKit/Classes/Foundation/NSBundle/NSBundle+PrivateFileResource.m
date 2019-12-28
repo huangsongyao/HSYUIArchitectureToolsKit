@@ -20,9 +20,6 @@
                        inBundle:resourceBundle
   compatibleWithTraitCollection:nil];
     
-    if (!image && resourceBundle) {
-        image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.png", resourceBundle.bundlePath, imageName]];
-    }
     return image;
 }
 
