@@ -20,7 +20,6 @@
 #import "HSYBaseView.h"
 #import "HSYCustomNavigationContentViewBar.h"
 #import "HSYBaseCollectionViewController.h"
-#import "HSYBaseCustomSegmentedPageViewController.h"
 #import "HSYBaseMainSegmentedViewController.h"
 #import "HSYBaseRefreshViewController.h"
 #import "HSYBaseSystemSegmentedPageViewController.h"

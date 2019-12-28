@@ -7,7 +7,7 @@
 //
 
 #import "HSYViewController.h"
-#import "HSYBaseViewModel.h"
+#import "HSYBaseViewModel.h" 
 #import <HSYMethodsToolsKit/UIButton+UIKit.h>
 #import <HSYMethodsToolsKit/UIView+Frame.h>
 #import "HSYBaseTableViewController.h"
@@ -92,8 +92,8 @@
         //        HSYTabbarViewController *vc = [[HSYTabbarViewController alloc] init];
         //        [self.navigationController pushViewController:vc animated:YES];
         
-        HSYTestSegmenetedPageViewController *vc = [[HSYTestSegmenetedPageViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+//        HSYTestSegmenetedPageViewController *vc = [[HSYTestSegmenetedPageViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }];
     button.frame = self.view.bounds;
     [self.view addSubview:button];
