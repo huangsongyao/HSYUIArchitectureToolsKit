@@ -139,7 +139,7 @@
         for (UIViewController *viewController in viewControllers) {
             viewController.view.size = _scrollView.size;
             viewController.view.x = x;
-            [_scrollView hsy_addSubview:viewController.view];
+            [_scrollView addSubview:viewController.view];
             for (NSString *subview in subviews) {
                 if ([viewController respondsToSelector:NSSelectorFromString(subview)]) {
                     UIView *realSubview = [viewController valueForKey:subview];
