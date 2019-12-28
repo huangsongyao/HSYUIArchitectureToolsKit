@@ -117,7 +117,7 @@ if [[ $? -eq 0 ]]; then
 		read -p "这个公有库中是否引用了其他私有库？ -> 引用过[y] -> 没引用过[n]：" publicIncludeOtherPrivates
 		if [[ $isyes == *$publicIncludeOtherPrivates* ]]; then
 			read -p "请输入所引用的私有库的git仓库地址，若有多个，请用[,]逗号隔开：" otherprivates
-			pod lib lint $hsyCocoapodsSDK.podspec --sources="$otherprivates, https://github.com/CocoaPods/Specs.git" --allow-warnings --use-libraries
+			pod lib lint $hsyCocoapodsSDK.podspec --sources="$otherprivates, https://github.com/CocoaPods/Specs.git" --allow-warnings --use-libraries --verbose
 		else
 			pod lib lint $hsyCocoapodsSDK.podspec --allow-warnings --use-libraries
 		fi
