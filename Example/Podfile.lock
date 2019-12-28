@@ -57,7 +57,7 @@ DEPENDENCIES:
   - HSYUIArchitectureToolsKit (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - FBSnapshotTestCase
     - JSONModel
@@ -83,10 +83,10 @@ CHECKOUT OPTIONS:
     :commit: 16c2690a2f4315f0ddf1417bb11db33ffb36ac8b
     :git: https://github.com/huangsongyao/HSYMacroKit.git
   HSYMethodsToolsKit:
-    :commit: 3c4799aecdbd6835a1208df29ee8bfcb3f28f0dd
+    :commit: b0956ae87fe1967724a8877fc9b162642bd5fd6b
     :git: https://github.com/huangsongyao/HSYMethodsToolsKit.git
   HSYNetworkToolsKit:
-    :commit: fd0d9a54497189f861f3536a316aa49f005dff40
+    :commit: 0b3aa2a2fdda0b4483e5806627f728ddf3f74abc
     :git: https://github.com/huangsongyao/HSYNetworkToolsKit.git
   HSYToolsClassKit:
     :commit: 505a8856947605c699ffe289755388c77b2e6eef
@@ -108,4 +108,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e4943e290efd9dc5d88bbb6f8d82c0d99dc3cf40
 
-COCOAPODS: 1.9.0.beta.2
+COCOAPODS: 1.6.1
