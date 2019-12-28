@@ -6,7 +6,7 @@
 //
 
 #import "HSYBaseRefreshViewModel.h"
-//#import "HSYBaseCustomSegmentedPageViewController.h"
+#import "HSYBaseCustomSegmentedPageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

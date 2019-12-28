@@ -7,7 +7,7 @@
 //
 
 #import "HSYViewController.h"
-#import "HSYBaseViewModel.h" 
+#import "HSYBaseViewModel.h"
 #import <HSYMethodsToolsKit/UIButton+UIKit.h>
 #import <HSYMethodsToolsKit/UIView+Frame.h>
 #import "HSYBaseTableViewController.h"
@@ -52,7 +52,7 @@
     [vm.didBecomeActiveSignal subscribeNext:^(id  _Nullable x) {
         NSLog(@"didBecomeActiveSignal -> : %@", x);
     }];
-    [vm.didBecomeInactiveSignal subscribeNext:^(id  _Nullable x) {
+    [vm.didBecomeInactiveSignal subscribeNext:^(id  _Nullable x) { 
         NSLog(@"didBecomeInactiveSignal -> : %@", x);
     }];
     RACSignal *signal1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
