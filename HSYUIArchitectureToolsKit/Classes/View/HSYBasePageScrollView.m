@@ -145,7 +145,7 @@
     @weakify(self);
     BOOL scrollDidCriticalValue = (offsetY >= criticalPoint);
     if (scrollDidCriticalValue) {
-        //到达滚动临界点后，如果mainTableView是向上滚动，则需要把mainTablView固定在临界点的位置
+        //到达滚动临界点后，需要把mainTablView固定在临界点的位置
         self.mainViewScrollState = NO;
         self.mainTableView.contentOffset = CGPointMake(0.0f, criticalPoint);
     } else {
@@ -153,11 +153,14 @@
         [self.listViewPages enumerateObjectsUsingBlock:^(UIViewController<HSYBasePageTableDelegate> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             @strongify(self);
             UIScrollView *listScrollView = obj.hsy_listScrollView;
-            if (self.mainViewScrollState) {
-                listScrollView.contentOffset = CGPointZero;
-            } else {
-                [self hsy_listScrollViewDidScroll:listScrollView];
+            BOOL thisSelectedPages = (self.selectedPage == idx);
+            if (!self.mainViewScrollState && thisSelectedPages) {
+                self.mainViewScrollState = (listScrollView.contentOffset.y <= 0.0f);
             }
+            if (!self.listViewScrollState && thisSelectedPages) {
+                listScrollView.contentOffset = CGPointZero;
+            }
+            NSLog(@"listScrollEnable=> %@, mainScrollEnable=> %@", @(self.listViewScrollState), @(self.mainViewScrollState));
             self.mainTableView.showsVerticalScrollIndicator = scrollDidCriticalValue;
             listScrollView.showsVerticalScrollIndicator = !self.mainTableView.showsVerticalScrollIndicator;
         }];
@@ -165,21 +168,6 @@
             //未到达临界点，mainScrollview不可滑动，固定其位置
             self.mainTableView.contentOffset = CGPointMake(0.0f, criticalPoint);
         }
-    }
-}
-
-- (void)hsy_listScrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //如果禁止listScrollview滑动，则固定其位置
-    if (!self.listViewScrollState) {
-        scrollView.contentOffset = CGPointZero;
-    }
-    //获取listScrollview偏移量
-    CGFloat offsetY = scrollView.contentOffset.y;
-    //listScrollView下滑至offsetY小于0，禁止其滑动，让mainTableView可下滑
-    self.mainViewScrollState = (offsetY <= 0.0f);
-    if (self.mainViewScrollState) {
-        scrollView.contentOffset = CGPointZero;
     }
 }
 
