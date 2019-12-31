@@ -86,6 +86,11 @@ typedef void(^HSYBaseCustomSegmentedPageRuntimeDelegateBlock)(HSYBaseCustomSegme
  */
 - (instancetype)initWithSegmentedPageModel:(HSYBaseCustomSegmentedPageControllerModel *)segmentedPageModel;
 
+/**
+ 将分页的HSYBaseCustomSegmentedPageControl从titleView上移除并添加到头部，同时更新子控制器的view.size
+ */
+- (void)hsy_resetScrollSubviewsLayout;
+
 @end
 
 NS_ASSUME_NONNULL_END

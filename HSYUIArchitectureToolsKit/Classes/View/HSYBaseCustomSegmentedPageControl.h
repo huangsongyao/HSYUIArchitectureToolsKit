@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, setter=hsy_setControlLineCirculars:) NSNumber *selectedLineCirculars;
 //外部设置HSYBaseCustomSegmentedPageControl选中状态下划线的颜色
 @property (nonatomic, strong, setter=hsy_setControlLineColor:) UIColor *selectedLineColor;
+//外部设置HSYBaseCustomSegmentedPageControl选中状态下划线距离底部的偏移量
+@property (nonatomic, assign, setter=hsy_setControlLineOffsetBottoms:) NSNumber *selectedLineOffsetBottoms;
 //外部设置HSYBaseCustomSegmentedPageControl底部横线的粗细
 @property (nonatomic, strong, setter=hsy_setControlBottomLineThickness:) NSNumber *bottomLineThickness;
 //外部设置HSYBaseCustomSegmentedPageControl底部横线的颜色

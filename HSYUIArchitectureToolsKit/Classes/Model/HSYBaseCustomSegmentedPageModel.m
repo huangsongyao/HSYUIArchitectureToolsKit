@@ -60,6 +60,7 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlSelectedLineDefaultHeight
 }
 
 @end
+
 @implementation HSYBaseCustomSegmentedPageModel
 
 - (NSMutableArray<HSYBaseCustomSegmentedPageControlModel *> *)controlModels
@@ -187,6 +188,14 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlSelectedLineDefaultHeight
         return self.controlWidths.doubleValue;
     }
     return IPHONE_WIDTH;
+}
+
+- (CGFloat)hsy_toControlLineOffsetBottoms
+{
+    if (!self.controlLineOffsetBottoms) {
+        return 0.0f;
+    }
+    return self.controlLineOffsetBottoms.doubleValue;
 }
 
 @end

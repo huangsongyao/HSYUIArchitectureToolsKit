@@ -109,6 +109,26 @@
     [self.scrollView hsy_setXPage:pages animated:self.segmentedPaging];
 }
 
+- (void)hsy_resetScrollSubviewsLayout
+{
+    self.customNavigationContentViewBar.hidden = YES;
+    self.segmentedPageControl.origin = CGPointZero;
+    [self.view addSubview:self.segmentedPageControl];
+    self.scrollView.y = self.segmentedPageControl.bottom;
+    self.scrollView.height = self.view.height - self.scrollView.y;
+    NSArray<NSString *> *subviews = [HSYBaseTabBarViewController hsy_listOfSubviews];
+    NSArray<UIViewController *> *viewControllers = [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel hsy_viewControllers:self];
+    for (UIViewController *viewController in viewControllers) {
+        viewController.view.size = self.scrollView.size;
+        for (NSString *subview in subviews) {
+            if ([viewController respondsToSelector:NSSelectorFromString(subview)]) {
+                UIView *realSubview = [viewController valueForKey:subview];
+                realSubview.size = viewController.view.size;
+            }
+        }
+    }
+}
+
 #pragma mark - Lazy
 
 - (HSYBaseCustomSegmentedPageControl *)segmentedPageControl

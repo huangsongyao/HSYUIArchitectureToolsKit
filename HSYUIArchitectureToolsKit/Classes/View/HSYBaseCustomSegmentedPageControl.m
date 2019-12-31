@@ -182,7 +182,7 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlForDefaultScrollOffsets =
 {
     if (!_selectedLine) {
         _selectedLine = [[UIView alloc] initWithSize:[self.segmentedPageControlModel hsy_selectedLineCGSize:self.scrollView.hsy_contentSizeWidth]];
-        _selectedLine.y = (self.height - _selectedLine.height);
+        _selectedLine.y = (self.height - _selectedLine.height - self.segmentedPageControlModel.hsy_toControlLineOffsetBottoms);
         _selectedLine.x = [self.scrollView hsy_segmentedControlSelectedLineOriginal:self.selectedIndex withLineWidths:_selectedLine.width];
         _selectedLine.backgroundColor = self.segmentedPageControlModel.hsy_toControlSelectedLineColor;
         _selectedLine.layer.cornerRadius = self.segmentedPageControlModel.controlLineCirculars.doubleValue;
@@ -238,6 +238,13 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlForDefaultScrollOffsets =
     _selectedLineThickness = selectedLineThickness;
     self.segmentedPageControlModel.controlLineThickness = selectedLineThickness;
     self.selectedLine.size = [self.segmentedPageControlModel hsy_selectedLineCGSize:self.scrollView.hsy_contentSizeWidth];
+}
+
+- (void)hsy_setControlLineOffsetBottoms:(NSNumber *)selectedLineOffsetBottoms
+{
+    _selectedLineOffsetBottoms = selectedLineOffsetBottoms;
+    self.segmentedPageControlModel.controlLineOffsetBottoms = selectedLineOffsetBottoms;
+    self.selectedLine.y = (self.height - _selectedLine.height - self.segmentedPageControlModel.hsy_toControlLineOffsetBottoms);;
 }
 
 - (void)hsy_setControlLineCirculars:(NSNumber *)selectedLineCirculars

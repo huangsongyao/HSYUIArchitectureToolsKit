@@ -28,6 +28,7 @@
     if (!self.mainSegmentedPageViewController) {
         self.mainSegmentedPageViewController = [[HSYBaseCustomSegmentedPageViewController alloc] initWithSegmentedPageModel:self.mainSegmentedPageControllerModel];
         self.mainSegmentedPageViewController.view.backgroundColor = UIColor.whiteColor;
+        [self.mainSegmentedPageViewController hsy_resetScrollSubviewsLayout];
     }
     return self.mainSegmentedPageViewController;
 }

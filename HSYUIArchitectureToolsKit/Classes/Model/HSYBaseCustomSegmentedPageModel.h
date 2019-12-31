@@ -78,6 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSValue *controlLineThickness;
 //选中状态的下划线的圆角角度
 @property (nonatomic, strong) NSNumber *controlLineCirculars;
+//选中状态的下划线距离底部的便宜量
+@property (nonatomic, strong) NSNumber *controlLineOffsetBottoms;
 //HSYBaseCustomSegmentedPageControl的底部横线的颜色
 @property (nonatomic, strong) UIColor *controlBottomLineColor;
 //HSYBaseCustomSegmentedPageControl的底部横线的粗细
@@ -176,6 +178,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return CGFloat
  */
 - (CGFloat)hsy_toControlWidths;
+
+/**
+ 返回选中状态下划线距离底部的偏移量
+
+ @return 选中状态下划线距离底部的偏移量
+ */
+- (CGFloat)hsy_toControlLineOffsetBottoms;
 
 @end
 
