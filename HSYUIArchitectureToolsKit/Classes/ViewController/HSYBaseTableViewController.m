@@ -21,15 +21,25 @@
 {
     if (self = [super init]) {
         self.tableViewStyle = UITableViewStylePlain;
-        self.lineHidden = YES;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.lineHidden = YES;
     // Do any additional setup after loading the view.
 }
+
+#pragma mark - Setter
+
+- (void)hsy_setTableLineHiddenStatus:(BOOL)lineHidden
+{
+    _lineHidden = lineHidden;
+    self.tableView.separatorStyle = (self.lineHidden ? UITableViewCellSeparatorStyleNone : UITableViewCellSeparatorStyleSingleLine);
+}
+
+#pragma mark - Lazy
 
 - (UITableView *)tableView
 {
@@ -37,7 +47,6 @@
         _tableView = [[UITableView alloc] initWithFrame:self.hsy_toListCGRect style:self.tableViewStyle];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorStyle = (self.lineHidden ? UITableViewCellSeparatorStyleNone : UITableViewCellSeparatorStyleSingleLine);
         [self.view addSubview:_tableView];
     }
     return _tableView;

@@ -7,6 +7,11 @@
 //
 
 @import UIKit;
+#import "HSYBaseTableViewController.h"
+
+@interface ListTestViewController : HSYBaseTableViewController 
+
+@end
 
 @interface HSYViewController : UIViewController
 

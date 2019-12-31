@@ -31,9 +31,39 @@ typedef NS_ENUM(NSUInteger, kHSYBaseCustomSegmentedPageDidScrollEndedType) {
 //********************************************************************************************************************************************************************************************************************************************************
 
 @class HSYBaseCustomSegmentedPageViewController;
+@protocol HSYBaseCustomSegmentedPageScrollDelegate <NSObject>
+
+@optional
+
+/**
+ 监听即将开始拖拽滚动
+
+ @param scrollView 分页的scrollView
+ @param index 当前的分页页码位置
+ */
+- (void)hsy_segmentedPageWillBeginDragging:(UIScrollView *)scrollView withCurrentIndex:(NSInteger)index;
+
+/**
+ 监听拖拽滚动结束[会监听"- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView"和"- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView"]
+
+ @param scrollView 分页的scrollView
+ @param index 当前的分页页码位置
+ */
+- (void)hsy_segmentedPageDidEndDecelerating:(UIScrollView *)scrollView withCurrentIndex:(NSInteger)index;
+
+/**
+ 监听拖拽滚动开始减速
+
+ @param scrollView 分页的scrollView
+ @param index 当前的分页页码位置
+ */
+- (void)hsy_segmentedPageDidEndDragging:(UIScrollView *)scrollView withCurrentIndex:(NSInteger)index;
+
+@end
+
 typedef void(^HSYBaseCustomSegmentedPageDidScrollEndedBlock)(NSInteger selectedIndex, kHSYBaseCustomSegmentedPageDidScrollEndedType scrollType, HSYBaseCustomSegmentedPageControllerModel *segmentedPageControllerModel);
 typedef void(^HSYBaseCustomSegmentedPageRuntimeDelegateBlock)(HSYBaseCustomSegmentedPageViewController *segmentedPageViewController, NSInteger selectedIndex, UIViewControllerRuntimeObject *object);
-@interface HSYBaseCustomSegmentedPageViewController : HSYBaseViewController
+@interface HSYBaseCustomSegmentedPageViewController : HSYBaseViewController <UIScrollViewDelegate>
 
 //titleView的分页control
 @property (nonatomic, strong, readonly) HSYBaseCustomSegmentedPageControl *segmentedPageControl;
@@ -45,6 +75,8 @@ typedef void(^HSYBaseCustomSegmentedPageRuntimeDelegateBlock)(HSYBaseCustomSegme
 @property (nonatomic, copy) HSYBaseCustomSegmentedPageDidScrollEndedBlock scrollEndedBlock;
 //监听子控制器的全局委托协议的回调事件，这个block会把回调信号事件返回到外部的子类中
 @property (nonatomic, copy) HSYBaseCustomSegmentedPageRuntimeDelegateBlock runtimeDelegateBlock;
+//监听几个UIScrollViewDelegate的委托
+@property (nonatomic, weak) id<HSYBaseCustomSegmentedPageScrollDelegate>delegate;
 
 /**
  初始化方法

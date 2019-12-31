@@ -52,7 +52,7 @@
 
 //********************************************************************************************************************************************************************************************************************************************************
 
-@interface HSYBaseCustomSegmentedPageViewController () <UIViewControllerRuntimeDelegate, UIScrollViewDelegate, HSYBaseCustomSegmentedPageControlDelegate> {
+@interface HSYBaseCustomSegmentedPageViewController () <UIViewControllerRuntimeDelegate, HSYBaseCustomSegmentedPageControlDelegate> {
 @private HSYBaseCustomSegmentedPageControl *_segmentedPageControl;
 }
 
@@ -80,7 +80,7 @@
     self.loading = NO;
     self.selectedIndex = 0;
     //通过一个全局的Category，当分页控制器的UI绘制完毕后，在viewDidLoad方法结尾返回每个子控制器的通知
-    NSArray<UIViewController *> *viewControllers = [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel viewControllers:self];
+    NSArray<UIViewController *> *viewControllers = [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel hsy_viewControllers:self];
     for (UIViewController *viewController in viewControllers) {
         [[[viewController hsy_layoutReset] rac_willDeallocSignal] hsy_performCompletedSignal];
     }
@@ -133,7 +133,7 @@
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
         [self.view addSubview:_scrollView];
-        NSArray<UIViewController *> *viewControllers = [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel viewControllers:self];
+        NSArray<UIViewController *> *viewControllers = [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel hsy_viewControllers:self];
         CGFloat x = 0.0f;
         NSArray<NSString *> *subviews = [HSYBaseTabBarViewController hsy_listOfSubviews];
         for (UIViewController *viewController in viewControllers) {
@@ -180,6 +180,9 @@
     if (self.scrollEndedBlock) {
         self.scrollEndedBlock(self.selectedIndex, kHSYBaseCustomSegmentedPageDidScrollEndedTypeTouchControlItem, [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel segmentedPageControllerModel]);
     }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(hsy_segmentedPageDidEndDecelerating:withCurrentIndex:)]) {
+        [self.delegate hsy_segmentedPageDidEndDecelerating:scrollView withCurrentIndex:self.selectedIndex];
+    }
     NSLog(@"- scrollViewDidEndScrollingAnimation: 按钮翻页结束, 当前页面位置:%@", @(self.selectedIndex));
 }
 
@@ -189,7 +192,28 @@
     if (self.scrollEndedBlock) {
         self.scrollEndedBlock(self.selectedIndex, kHSYBaseCustomSegmentedPageDidScrollEndedTypeScrollPaging, [(HSYBaseCustomSegmentedPageViewModel *)self.viewModel segmentedPageControllerModel]);
     }
-    NSLog(@"- scrollViewDidEndDecelerating: 滚动手势结束, 当前页面位置:%@", @(self.selectedIndex));
+    if (self.delegate && [self.delegate respondsToSelector:@selector(hsy_segmentedPageDidEndDecelerating:withCurrentIndex:)]) {
+        [self.delegate hsy_segmentedPageDidEndDecelerating:scrollView withCurrentIndex:self.selectedIndex];
+    }
+    NSLog(@"- scrollViewDidEndDecelerating: 拖拽滚动手势结束, 当前页面位置:%@", @(self.selectedIndex));
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(hsy_segmentedPageWillBeginDragging:withCurrentIndex:)]) {
+        [self.delegate hsy_segmentedPageWillBeginDragging:scrollView withCurrentIndex:self.selectedIndex];
+    }
+    NSLog(@"- scrollViewWillBeginDragging: 即将开始拖拽滚动手势, 当前页面位置:%@", @(self.selectedIndex));
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (decelerate) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(hsy_segmentedPageDidEndDragging:withCurrentIndex:)]) {
+            [self.delegate hsy_segmentedPageDidEndDragging:scrollView withCurrentIndex:self.selectedIndex];
+        }
+    }
+    NSLog(@"- scrollViewDidEndDragging:willDecelerate: 拖拽滚动手势开始减速, 当前页面位置:%@", @(self.selectedIndex));
 }
 
 #pragma mark - HSYBaseCustomSegmentedPageControlDelegate

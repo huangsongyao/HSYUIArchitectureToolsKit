@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param delegate 全局的runtime委托
  @return 分页控制器的子控制器的对象集合
  */
-- (NSArray<UIViewController *> *)viewControllers:(id<UIViewControllerRuntimeDelegate>)delegate;
+- (NSArray<UIViewController *> *)hsy_viewControllers:(id<UIViewControllerRuntimeDelegate>)delegate;
 
 @end
 

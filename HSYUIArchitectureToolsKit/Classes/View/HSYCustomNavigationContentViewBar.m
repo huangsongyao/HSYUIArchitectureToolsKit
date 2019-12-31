@@ -37,7 +37,7 @@ NSInteger const kHSYDefaultCustomBarButtonItemForKeyB   = 9999999;
 
 + (UIBarButtonItem *)hsy_defaultBackBarButtonItem:(void (^)(UIButton *button, NSInteger tag))next
 {
-    return [self.class hsy_defaultImageBarButtonItem:@{@"back_nav_normal_black" : @"back_nav_normal_black"} clickedOnAction:next];
+    return [self.class hsy_defaultImageBarButtonItem:@{@"nav_icon_back" : @"nav_icon_back"} clickedOnAction:next];
 }
  
 + (UIBarButtonItem *)hsy_defaultImageBarButtonItem:(NSDictionary *)paramter clickedOnAction:(void (^)(UIButton *button, NSInteger tag))action
@@ -52,7 +52,7 @@ NSInteger const kHSYDefaultCustomBarButtonItemForKeyB   = 9999999;
 
 + (NSArray *)hsy_defaultWebLeftCustomButtonItem:(void (^)(UIButton *button, NSInteger tag))next
 {
-    return [self.class hsy_defaultImageLeftBarButtonItem:@[@{@"back_nav_normal_black" : @"back_nav_normal_black"},@{@"web_close_icon" : @"web_close_icon"}] clickedOnAction:next];
+    return [self.class hsy_defaultImageLeftBarButtonItem:@[@{@"nav_icon_back" : @"nav_icon_back"},@{@"web_close_icon" : @"web_close_icon"}] clickedOnAction:next];
 }
 
 + (NSArray *)hsy_defaultImageLeftBarButtonItem:(NSArray<NSDictionary *> *)paramterArr clickedOnAction:(void (^)(UIButton *button, NSInteger tag))action

@@ -29,7 +29,7 @@
     return self.segmentedPageControllerModel.segmentedPageControlModel;
 }
 
-- (NSArray<UIViewController *> *)viewControllers:(id<UIViewControllerRuntimeDelegate>)delegate
+- (NSArray<UIViewController *> *)hsy_viewControllers:(id<UIViewControllerRuntimeDelegate>)delegate
 {
     if (!_viewControllers) {
         _viewControllers = [self.segmentedPageControllerModel hsy_toViewControllers:delegate];

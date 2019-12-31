@@ -9,6 +9,7 @@
 #import <HSYMethodsToolsKit/UIView+Frame.h>
 #import <HSYMacroKit/HSYToolsMacro.h>
 #import <HSYMethodsToolsKit/RACSignal+Convenients.h>
+#import <HSYMethodsToolsKit/UIScrollView+Pages.h>
 
 //********************************************************************************************************************************************************************************************************************************************************
 
@@ -41,9 +42,8 @@
     @private HSYBasePageTableView *_mainTableView;
 }
 
-@property (nonatomic, assign) BOOL scrollDidCriticalValue;
-@property (nonatomic, assign) BOOL mainViewScrollState;
 @property (nonatomic, assign) BOOL listViewScrollState;
+@property (nonatomic, assign, setter=hsy_setMainScrollEnable:) BOOL mainViewScrollState;
 @property (nonatomic, strong) NSArray<UIViewController<HSYBasePageTableDelegate> *> *listViewPages;
 
 @end
@@ -54,27 +54,16 @@
 {
     if (self = [super initWithSize:CGSizeMake(IPHONE_WIDTH, IPHONE_HEIGHT)]) {
         //默认的变量标记状态
-        [self hsy_defaultTabStatus];
+        self.mainViewScrollState = YES;
         //设置委托
         self.delegate = delegate;
-        //由委托获取外部返回的添加过HSYBasePageTableDelegate协议的UIViewController控制器集合
+        //由委托获取外部返回的添加过HSYBasePageTableDelegate协议的UIViewController控制器集合，并且设置子控制器中的UIScrollView类族的bounces为NO
         self.listViewPages = [self.delegate hsy_listViewsInPageScrollView:self];
-        @weakify(self);
         [self.listViewPages enumerateObjectsUsingBlock:^(UIViewController<HSYBasePageTableDelegate> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj hsy_listScrollViewDidScroll:^(UIScrollView * _Nonnull scrollView) {
-                @strongify(self);
-                [self hsy_listScrollViewDidScroll:scrollView]; 
-            }];
+            obj.hsy_listScrollView.bounces = NO;
         }];
     }
     return self;
-}
-
-- (void)hsy_defaultTabStatus
-{
-    self.scrollDidCriticalValue = NO;
-    self.mainViewScrollState = YES;
-    self.listViewScrollState = NO;
 }
 
 #pragma mark - Lazy
@@ -100,6 +89,12 @@
     self.mainTableView.scrollEnabled = userHorizonScroll;
 }
 
+- (void)hsy_setMainScrollEnable:(BOOL)mainViewScrollState
+{
+    _mainViewScrollState = mainViewScrollState;
+    self.listViewScrollState = !mainViewScrollState;
+}
+
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -118,6 +113,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHSYBasePageMainScrollCellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHSYBasePageMainScrollCellIdentifier];
+        cell.backgroundColor = UIColor.clearColor;
+        cell.contentView.backgroundColor = cell.backgroundColor;
     }
     UIView *contentView = [self.delegate hsy_pageViewInPageScrollView:self];
     [cell.contentView addSubview:contentView];
@@ -133,36 +130,40 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self mainScrollViewDidScroll:scrollView];
+    [self hsy_mainScrollViewDidScroll:scrollView];
     if (self.delegate && [self.delegate respondsToSelector:@selector(hsy_mainTableViewDidScroll:)]) {
         [self.delegate hsy_mainTableViewDidScroll:scrollView];
     }
 }
 
-- (void)mainScrollViewDidScroll:(UIScrollView *)scrollView
+- (void)hsy_mainScrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //获取mainScrollview偏移量
-    CGFloat offsetY = scrollView.contentOffset.y;
+    //获取mainScrollView偏移量
+    CGFloat offsetY = self.mainTableView.contentOffset.y;
     CGFloat criticalPoint = [self.mainTableView rectForSection:0].origin.y - self.criticalScrollValue;
-    
     // 根据偏移量判断是否上滑到临界点
-    self.scrollDidCriticalValue = (offsetY >= criticalPoint);
-    if (self.scrollDidCriticalValue) {
-        //上滑到临界点后，固定其位置
-        scrollView.contentOffset = CGPointMake(0.0f, criticalPoint);
+    @weakify(self);
+    BOOL scrollDidCriticalValue = (offsetY >= criticalPoint);
+    if (scrollDidCriticalValue) {
+        //到达滚动临界点后，如果mainTableView是向上滚动，则需要把mainTablView固定在临界点的位置
         self.mainViewScrollState = NO;
-        self.listViewScrollState = YES;
+        self.mainTableView.contentOffset = CGPointMake(0.0f, criticalPoint);
     } else {
-        if (self.mainViewScrollState) {
-            //未达到临界点，mainScrollview可滑动，需要重置所有listScrollView的位置
-            [self.listViewPages enumerateObjectsUsingBlock:^(UIViewController<HSYBasePageTableDelegate> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                UIScrollView *listScrollView = [obj hsy_listScrollView];
+        //未达到临界点，mainScrollview可滑动，需要重置所有listScrollView的位置
+        [self.listViewPages enumerateObjectsUsingBlock:^(UIViewController<HSYBasePageTableDelegate> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            @strongify(self);
+            UIScrollView *listScrollView = obj.hsy_listScrollView;
+            if (self.mainViewScrollState) {
                 listScrollView.contentOffset = CGPointZero;
-                listScrollView.showsVerticalScrollIndicator = NO;
-            }];
-        } else {
+            } else {
+                [self hsy_listScrollViewDidScroll:listScrollView];
+            }
+            self.mainTableView.showsVerticalScrollIndicator = scrollDidCriticalValue;
+            listScrollView.showsVerticalScrollIndicator = !self.mainTableView.showsVerticalScrollIndicator;
+        }];
+        if (!self.mainViewScrollState) {
             //未到达临界点，mainScrollview不可滑动，固定其位置
-            scrollView.contentOffset = CGPointMake(0.0f, criticalPoint);
+            self.mainTableView.contentOffset = CGPointMake(0.0f, criticalPoint);
         }
     }
 }
@@ -176,15 +177,9 @@
     //获取listScrollview偏移量
     CGFloat offsetY = scrollView.contentOffset.y;
     //listScrollView下滑至offsetY小于0，禁止其滑动，让mainTableView可下滑
-    if (offsetY < 0.0f) {
-        self.mainViewScrollState = YES;
-        self.listViewScrollState = NO;
+    self.mainViewScrollState = (offsetY <= 0.0f);
+    if (self.mainViewScrollState) {
         scrollView.contentOffset = CGPointZero;
-        scrollView.showsVerticalScrollIndicator = NO;
-    } else {
-        if (self.listViewScrollState) {
-            scrollView.showsVerticalScrollIndicator = YES;
-        }
     }
 }
 

@@ -22,13 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (UIScrollView *)hsy_listScrollView;
 
-/**
- 由外部的分页子控制器持有scroll来监听它的UIScrollview类族对象的滚动
- 
- @param scroll scroll block
- */
-- (void)hsy_listScrollViewDidScroll:(void(^)(UIScrollView *scrollView))scroll;
-
 @end
 
 //********************************************************************************************************************************************************************************************************************************************************
@@ -107,6 +100,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat criticalScrollValue;
 //设置左右滑动及上下滑动冲突时的禁止横向滚动的行为
 @property (nonatomic, assign, setter=hsy_startHorizonScroll:) BOOL userHorizonScroll;
+//当前选中的页面
+@property (nonatomic, assign) NSInteger selectedPage;
 
 /**
  初始化方法

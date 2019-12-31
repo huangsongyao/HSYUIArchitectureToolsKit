@@ -10,21 +10,26 @@
 #import "HSYBaseViewModel.h"
 #import <HSYMethodsToolsKit/UIButton+UIKit.h>
 #import <HSYMethodsToolsKit/UIView+Frame.h>
-#import "HSYBaseTableViewController.h"
 #import "HSYBaseCollectionViewController.h"
 #import "HSYTabbarViewController.h" 
 #import "HSYBaseCustomSegmentedPageControl.h"
 #import "HSYTestSegmenetedPageViewController.h"
 
-@interface ListTestViewController : HSYBaseTableViewController
-
-@end
 
 @implementation ListTestViewController
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.viewModel = [[HSYBaseRefreshViewModel alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.loading = NO;
     NSLog(@"000000000000000000");
 }
 
@@ -93,7 +98,8 @@
         //        [self.navigationController pushViewController:vc animated:YES];
         
 //        HSYTestSegmenetedPageViewController *vc = [[HSYTestSegmenetedPageViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        HSYTestMainSegmenetedPageViewController *vc = [[HSYTestMainSegmenetedPageViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     button.frame = self.view.bounds;
     [self.view addSubview:button];
