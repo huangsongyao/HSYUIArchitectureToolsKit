@@ -224,6 +224,11 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlForDefaultScrollOffsets =
     return _bottomLine;
 }
 
+- (NSArray<HSYBaseCustomSegmentedPageControlItem *> *)hsy_toSegmentedPageControlItems
+{
+    return self.controlItems;
+}
+
 #pragma mark - Setter
 
 - (void)hsy_setBackgroundImage:(NSString *)controlBackgroundImage
@@ -278,7 +283,19 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlForDefaultScrollOffsets =
 - (void)hsy_setControlAdaptiveFormat:(BOOL)adaptiveFormat
 {
     _adaptiveFormat = adaptiveFormat;
+    self.segmentedPageControlModel.adaptiveFormat = @(adaptiveFormat);
     [self hsy_resetControlWidths];
+}
+
+- (void)hsy_setControlItemWidths:(CGFloat)controlItemWidths
+{
+    _controlItemWidths = controlItemWidths;
+    for (HSYBaseCustomSegmentedPageControlItem *controlItem in self.controlItems) {
+        [controlItem hsy_resetItemWidths:controlItemWidths withIndex:[self.controlItems indexOfObject:controlItem]];
+    }
+    self.width = (controlItemWidths * self.controlItems.count);
+    self.scrollView.width = self.width;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.width, 0.0f);
 }
 
 - (void)hsy_setSelectedIndex:(NSInteger)selectedIndex

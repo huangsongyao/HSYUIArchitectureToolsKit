@@ -36,6 +36,14 @@ typedef RACSignal<RACTuple *> *_Nonnull(^HSYBaseCustomSegmentedPageControlItemAc
  */
 - (void)hsy_resetSelectedSegmentedPageControlModel;
 
+/**
+ 外部重置HSYBaseCustomSegmentedPageControlItem的新的宽度
+
+ @param itemWidths HSYBaseCustomSegmentedPageControlItem的新的宽度
+ @param index 当前的item在HSYBaseCustomSegmentedPageControl上的位置
+ */
+- (void)hsy_resetItemWidths:(CGFloat)itemWidths withIndex:(NSInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

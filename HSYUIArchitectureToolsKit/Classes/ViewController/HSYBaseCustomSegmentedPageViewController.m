@@ -9,6 +9,7 @@
 #import "HSYBaseTabBarViewController.h"
 #import <HSYMacroKit/HSYToolsMacro.h>
 #import <HSYMethodsToolsKit/UIScrollView+Pages.h>
+#import <HSYMethodsToolsKit/UIImage+Canvas.h>
 #import <HSYMethodsToolsKit/UIView+Frame.h>
 
 //********************************************************************************************************************************************************************************************************************************************************
@@ -53,7 +54,8 @@
 //********************************************************************************************************************************************************************************************************************************************************
 
 @interface HSYBaseCustomSegmentedPageViewController () <UIViewControllerRuntimeDelegate, HSYBaseCustomSegmentedPageControlDelegate> {
-@private HSYBaseCustomSegmentedPageControl *_segmentedPageControl;
+    @private HSYBaseCustomSegmentedPageControl *_segmentedPageControl;
+    @private UIImageView *_segmentedPageControlBackgroundView;
 }
 
 //滚动条
@@ -109,11 +111,9 @@
     [self.scrollView hsy_setXPage:pages animated:self.segmentedPaging];
 }
 
-- (void)hsy_resetScrollSubviewsLayout
+- (void)hsy_resetSegmentedPageControlHeights:(CGFloat)heights
 {
-    self.customNavigationContentViewBar.hidden = YES;
-    self.segmentedPageControl.origin = CGPointZero;
-    [self.view addSubview:self.segmentedPageControl];
+    self.segmentedPageControl.height = heights;
     self.scrollView.y = self.segmentedPageControl.bottom;
     self.scrollView.height = self.view.height - self.scrollView.y;
     NSArray<NSString *> *subviews = [HSYBaseTabBarViewController hsy_listOfSubviews];
@@ -131,12 +131,29 @@
 
 #pragma mark - Lazy
 
+- (UIImageView *)segmentedPageControlBackgroundView
+{
+    if (!_segmentedPageControlBackgroundView) {
+        UIImage *image = [UIImage hsy_imageWithFillColor:UIColor.clearColor];
+        _segmentedPageControlBackgroundView = [[UIImageView alloc] initWithImage:image highlightedImage:image];
+        _segmentedPageControlBackgroundView.userInteractionEnabled = YES;
+        [self.view addSubview:_segmentedPageControlBackgroundView];
+    }
+    return _segmentedPageControlBackgroundView;
+}
+
 - (HSYBaseCustomSegmentedPageControl *)segmentedPageControl
 {
     if (!_segmentedPageControl) {
         _segmentedPageControl = [[HSYBaseCustomSegmentedPageControl alloc] initWithSegmentedPageModel:[(HSYBaseCustomSegmentedPageViewModel *)self.viewModel hsy_toSegmentedPageControlModel]];
         _segmentedPageControl.delegate = self;
-        self.hsy_realNavigationBarItem.titleView = _segmentedPageControl;
+        if ([(HSYBaseCustomSegmentedPageViewModel *)self.viewModel hsy_toSegmentedPageControlModel].hsy_segmentedPageControlTitleViewFormat) {
+            self.hsy_realNavigationBarItem.titleView = _segmentedPageControl;
+        } else {
+            self.customNavigationContentViewBar.hidden = YES;
+            self.segmentedPageControlBackgroundView.size = CGSizeMake(self.view.width, _segmentedPageControl.height);
+            [self.view addSubview:_segmentedPageControl];
+        }
     }
     return _segmentedPageControl;
 }
@@ -144,7 +161,7 @@
 - (UIScrollView *)scrollView
 {
     if (!_scrollView) {
-        CGFloat y = self.customNavigationContentViewBar.bottom;
+        CGFloat y = ([(HSYBaseCustomSegmentedPageViewModel *)self.viewModel hsy_toSegmentedPageControlModel].hsy_segmentedPageControlTitleViewFormat ? self.customNavigationContentViewBar.bottom : self.segmentedPageControl.bottom);
         _scrollView = [[UIScrollView alloc] initWithSize:CGSizeMake(self.view.width, (self.view.height - y))];
         _scrollView.y = y;
         _scrollView.showsHorizontalScrollIndicator = NO;

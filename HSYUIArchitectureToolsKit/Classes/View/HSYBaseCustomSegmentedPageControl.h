@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, setter=hsy_setSelectedIndex:) NSInteger selectedIndex;
 //外部设置HSYBaseCustomSegmentedPageControl的自适应模式，如果为YES，则根据每个item的宽度计算出整体的显示宽度，最大为设备宽度；如果为NO，则使用self.segmentedPageControlModel的参数设置
 @property (nonatomic, assign, setter=hsy_setControlAdaptiveFormat:) BOOL adaptiveFormat;
+//外部设置HSYBaseCustomSegmentedPageControl的HSYBaseCustomSegmentedPageControlItem的宽度
+@property (nonatomic, assign, setter=hsy_setControlItemWidths:) CGFloat controlItemWidths;
 //委托
 @property (nonatomic, weak) id<HSYBaseCustomSegmentedPageControlDelegate>delegate;
 
@@ -84,6 +86,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param scales [0, 1]闭区间，为当前UIScrollView滚动的百分比
  */
 - (void)hsy_setContentOffsets:(CGFloat)scales;
+
+/**
+ 返回HSYBaseCustomSegmentedPageControl的HSYBaseCustomSegmentedPageControlItem项的缓存集合
+
+ @return NSArray<HSYBaseCustomSegmentedPageControlItem *> *
+ */
+- (NSArray<HSYBaseCustomSegmentedPageControlItem *> *)hsy_toSegmentedPageControlItems;
 
 @end
 

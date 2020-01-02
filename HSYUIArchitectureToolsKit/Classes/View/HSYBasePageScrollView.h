@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<HSYBasePageScrollDelegate>delegate;
 //主界面底部的tableView
 @property (nonatomic, strong, readonly) HSYBasePageTableView *mainTableView;
-//临界值
+//临界值的偏移量，默认为0.0f，此时临界值为self.mainTableView.tableHeaderView.height，当这个属性有值时，此时偏移量为(self.mainTableView.tableHeaderView.height + self.criticalScrollValue)
 @property (nonatomic, assign) CGFloat criticalScrollValue;
 //设置左右滑动及上下滑动冲突时的禁止横向滚动的行为
 @property (nonatomic, assign, setter=hsy_startHorizonScroll:) BOOL userHorizonScroll;

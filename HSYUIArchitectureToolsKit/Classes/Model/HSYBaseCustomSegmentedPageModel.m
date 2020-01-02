@@ -61,7 +61,7 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlSelectedLineDefaultHeight
 
 @end
 
-@implementation HSYBaseCustomSegmentedPageModel
+@implementation HSYBaseCustomSegmentedPageModel 
 
 - (NSMutableArray<HSYBaseCustomSegmentedPageControlModel *> *)controlModels
 {
@@ -198,6 +198,14 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlSelectedLineDefaultHeight
     return self.controlLineOffsetBottoms.doubleValue;
 }
 
+- (BOOL)hsy_segmentedPageControlTitleViewFormat
+{
+    if (self.titleViewFormat) {
+        return self.titleViewFormat.boolValue;
+    }
+    return YES;
+}
+
 @end
 
 //********************************************************************************************************************************************************************************************************************************************************
@@ -221,5 +229,10 @@ static CGFloat const kHSYBaseCustomSegmentedPageControlSelectedLineDefaultHeight
     }
     return viewControllers;
 } 
+
+- (CGFloat)hsy_toAreEqualControlItemWidths
+{
+    return (self.segmentedPageControlModel.hsy_toControlWidths / self.segmentedPageControlModel.controlModels.count);
+}
 
 @end

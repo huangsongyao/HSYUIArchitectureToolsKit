@@ -46,6 +46,8 @@
     return controlItem;
 }
 
+#pragma mark - Methods
+
 - (void)hsy_resetUnselectedSegmentedPageControlModel
 {
     self.controlModel.selectedStatus = @(NO);
@@ -82,9 +84,22 @@
     }
 }
 
+- (void)hsy_resetItemWidths:(CGFloat)itemWidths withIndex:(NSInteger)index
+{
+    if (itemWidths < 0.0f) {
+        return;
+    }
+    self.width = itemWidths;
+    self.controlModel.itemWidths = @(itemWidths);
+    self.x = (index * self.width);
+}
+
+#pragma mark - Static Methods
+
 + (CGFloat)hsy_defaultSpacing
 {
     return 2.5f;
 }
+
 
 @end

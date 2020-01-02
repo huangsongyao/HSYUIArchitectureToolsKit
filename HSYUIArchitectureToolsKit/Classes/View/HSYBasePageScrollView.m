@@ -10,6 +10,7 @@
 #import <HSYMacroKit/HSYToolsMacro.h>
 #import <HSYMethodsToolsKit/RACSignal+Convenients.h>
 #import <HSYMethodsToolsKit/UIScrollView+Pages.h>
+#import "HSYBaseCustomSegmentedPageControlItem.h"
 
 //********************************************************************************************************************************************************************************************************************************************************
 
@@ -31,13 +32,47 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    NSLog(@"gestureRecognizer.view=> %@, touch=> %@", gestureRecognizer.view, touch.view);
+    NSLog(@"touch.class=> %@", NSStringFromClass(touch.view.class));
+    NSArray<NSString *> *receiveClasses = @[NSStringFromClass(HSYBaseCustomSegmentedPageControlItem.class), NSStringFromClass(UIImageView.class)]; 
+    if ([receiveClasses containsObject:NSStringFromClass(touch.view.class)]) {
+        return NO;
+    }
     return YES;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
+}
+
+@end
+
+//********************************************************************************************************************************************************************************************************************************************************
+
+@interface HSYBasePageTableCell : UITableViewCell
+
+@property (nonatomic, strong, setter=hsy_setPageContentView:) UIView *pageContentView;
+
+@end
+
+@implementation HSYBasePageTableCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = UIColor.clearColor;
+        self.contentView.backgroundColor = self.backgroundColor;
+    }
+    return self;
+}
+
+- (void)hsy_setPageContentView:(UIView *)pageContentView
+{
+    if (!pageContentView) {
+        return;
+    }
+    _pageContentView = pageContentView;
+    [self.contentView addSubview:pageContentView];
 }
 
 @end
@@ -116,15 +151,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *kHSYBasePageMainScrollCellIdentifier = @"HSYBasePageMainScrollCellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHSYBasePageMainScrollCellIdentifier];
+    HSYBasePageTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kHSYBasePageMainScrollCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHSYBasePageMainScrollCellIdentifier];
-        cell.backgroundColor = UIColor.clearColor;
-        cell.contentView.backgroundColor = cell.backgroundColor;
+        cell = [[HSYBasePageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kHSYBasePageMainScrollCellIdentifier];
     }
-    UIView *contentView = [self.delegate hsy_pageViewInPageScrollView:self];
-    [cell.contentView addSubview:contentView];
-    return cell;
+    cell.pageContentView = [self.delegate hsy_pageViewInPageScrollView:self];
+    return cell; 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

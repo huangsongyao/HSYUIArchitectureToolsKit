@@ -65,8 +65,10 @@ typedef void(^HSYBaseCustomSegmentedPageDidScrollEndedBlock)(NSInteger selectedI
 typedef void(^HSYBaseCustomSegmentedPageRuntimeDelegateBlock)(HSYBaseCustomSegmentedPageViewController *segmentedPageViewController, NSInteger selectedIndex, UIViewControllerRuntimeObject *object);
 @interface HSYBaseCustomSegmentedPageViewController : HSYBaseViewController <UIScrollViewDelegate>
 
-//titleView的分页control
+//分页control
 @property (nonatomic, strong, readonly) HSYBaseCustomSegmentedPageControl *segmentedPageControl;
+//分页control的背景图
+@property (nonatomic, strong, readonly) UIImageView *segmentedPageControlBackgroundView;
 //外部设置分页控制器是否支持手指左右滚动，默认为支持[YES]
 @property (nonatomic, assign, setter=hsy_setSegmentedPaging:) BOOL segmentedPaging;
 //外部设置分页控制器当前选中的位置，默认选中0
@@ -87,9 +89,11 @@ typedef void(^HSYBaseCustomSegmentedPageRuntimeDelegateBlock)(HSYBaseCustomSegme
 - (instancetype)initWithSegmentedPageModel:(HSYBaseCustomSegmentedPageControllerModel *)segmentedPageModel;
 
 /**
- 将分页的HSYBaseCustomSegmentedPageControl从titleView上移除并添加到头部，同时更新子控制器的view.size
+ HSYBaseCustomSegmentedPageControl的高度重置，适用于HSYBaseCustomSegmentedPageControl不添加于titleView的模式下
+
+ @param heights HSYBaseCustomSegmentedPageControl的新的高度
  */
-- (void)hsy_resetScrollSubviewsLayout;
+- (void)hsy_resetSegmentedPageControlHeights:(CGFloat)heights;
 
 @end
 

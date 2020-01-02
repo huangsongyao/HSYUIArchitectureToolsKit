@@ -19,6 +19,7 @@
 {
     if (self = [super init]) {
         self->_mainSegmentedPageControllerModel = segmentedPageModel;
+        self.mainSegmentedPageControllerModel.segmentedPageControlModel.adaptiveFormat = @(NO);
     }
     return self;
 }
@@ -28,7 +29,7 @@
     if (!self.mainSegmentedPageViewController) {
         self.mainSegmentedPageViewController = [[HSYBaseCustomSegmentedPageViewController alloc] initWithSegmentedPageModel:self.mainSegmentedPageControllerModel];
         self.mainSegmentedPageViewController.view.backgroundColor = UIColor.whiteColor;
-        [self.mainSegmentedPageViewController hsy_resetScrollSubviewsLayout];
+//        self.mainSegmentedPageViewController.segmentedPageControl.controlItemWidths = self.mainSegmentedPageControllerModel.hsy_toAreEqualControlItemWidths;
     }
     return self.mainSegmentedPageViewController;
 }

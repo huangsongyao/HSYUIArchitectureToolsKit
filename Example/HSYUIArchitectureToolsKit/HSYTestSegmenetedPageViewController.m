@@ -48,7 +48,8 @@
                        @{@"image" : @"mine_icon_def", @"highImage" : @"mine_icon_sel", @"title" : @"four", @"selectedStatus" : @(NO), @"itemWidths" : @(55.0f), @"itemId" : @(3)},];
     HSYBaseCustomSegmentedPageModel *model = [[HSYBaseCustomSegmentedPageModel alloc] init];
     model.showControlBottomLine = @(NO);
-//    model.adaptiveFormat = @(YES);
+    model.titleViewFormat = @(NO);
+    model.adaptiveFormat = @(YES);
     for (NSDictionary *json in jsons) {
         HSYBaseCustomSegmentedPageControlModel *controlModel = (HSYBaseCustomSegmentedPageControlModel *)[HSYBaseCustomSegmentedPageControlModel hsy_kvcModelWithJSON:json];
         [model.controlModels addObject:controlModel];

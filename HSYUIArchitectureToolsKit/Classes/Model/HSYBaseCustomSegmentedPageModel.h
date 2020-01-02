@@ -92,6 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *adaptiveFormat;
 //外部设置HSYBaseCustomSegmentedPageControl的显示宽度，如果self.adaptiveFormat = YES，则这个属性不生效
 @property (nonatomic, strong) NSNumber *controlWidths;
+//是否将HSYBaseCustomSegmentedPageControl添加在titleView头部
+@property (nonatomic, strong) NSNumber *titleViewFormat;
 
 /**
  根据self.controlModels中的参数模型的selectedStatus属性的选中状态，返回HSYBaseCustomSegmentedPageControl当前选中的位置，如果self.controlModels中的参数模型的selectedStatus属性都为NO，则默认返回0
@@ -186,6 +188,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (CGFloat)hsy_toControlLineOffsetBottoms;
 
+/**
+ HSYBaseCustomSegmentedPageControl的存在形式，返回self.titleViewFormat.boolValue，如果为NO，则HSYBaseCustomSegmentedPageControl在(0, 0)位置，如果为YES，则HSYBaseCustomSegmentedPageControl在titleView位置，默认返回YES
+ 
+ @return HSYBaseCustomSegmentedPageControl的存在形式
+ */
+- (BOOL)hsy_segmentedPageControlTitleViewFormat;
+
 @end
 
 //********************************************************************************************************************************************************************************************************************************************************
@@ -204,6 +213,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return NSArray<UIViewController *> * => 子控制器对象的集合
  */
 - (NSArray<UIViewController *> *)hsy_toViewControllers:(id<UIViewControllerRuntimeDelegate>)delegate;
+
+/**
+ 返回根据self.segmentedPageControlModel.hsy_toControlWidths的值均等分后的HSYBaseCustomSegmentedPageControlItem的宽度
+
+ @return HSYBaseCustomSegmentedPageControlItem的均等分宽度
+ */
+- (CGFloat)hsy_toAreEqualControlItemWidths;
 
 @end
 
