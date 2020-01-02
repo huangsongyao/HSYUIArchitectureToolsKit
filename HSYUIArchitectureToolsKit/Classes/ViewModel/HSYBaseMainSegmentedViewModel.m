@@ -29,7 +29,7 @@
     if (!self.mainSegmentedPageViewController) {
         self.mainSegmentedPageViewController = [[HSYBaseCustomSegmentedPageViewController alloc] initWithSegmentedPageModel:self.mainSegmentedPageControllerModel];
         self.mainSegmentedPageViewController.view.backgroundColor = UIColor.whiteColor;
-//        self.mainSegmentedPageViewController.segmentedPageControl.controlItemWidths = self.mainSegmentedPageControllerModel.hsy_toAreEqualControlItemWidths;
+        self.mainSegmentedPageViewController.segmentedPageControl.controlItemWidths = self.mainSegmentedPageControllerModel.hsy_toAreEqualControlItemWidths;
     }
     return self.mainSegmentedPageViewController;
 }

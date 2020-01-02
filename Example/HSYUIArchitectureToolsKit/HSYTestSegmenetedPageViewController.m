@@ -130,6 +130,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"++++++++++++++");
+}
+
 @end
 
 @interface ViewController_2 : ListTestViewController <HSYBasePageTableDelegate>
