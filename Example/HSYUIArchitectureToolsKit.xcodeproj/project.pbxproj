@@ -91,7 +91,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9003448B5AB52701CA3D0028 /* Pods_HSYUIArchitectureToolsKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HSYUIArchitectureToolsKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B829924934392E35F36C80 /* Pods-HSYUIArchitectureToolsKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HSYUIArchitectureToolsKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-HSYUIArchitectureToolsKit_Example/Pods-HSYUIArchitectureToolsKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		D20262AD5B5A66810A45EEA3 /* HSYUIArchitectureToolsKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HSYUIArchitectureToolsKit.podspec; path = ../HSYUIArchitectureToolsKit.podspec; sourceTree = "<group>"; };
+		D20262AD5B5A66810A45EEA3 /* HSYUIArchitectureToolsKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HSYUIArchitectureToolsKit.podspec; path = ../HSYUIArchitectureToolsKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F633F69BFFA208095E91E6CD /* Pods_HSYUIArchitectureToolsKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HSYUIArchitectureToolsKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 

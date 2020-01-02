@@ -34,7 +34,7 @@ PODS:
     - HSYMacroKit
     - HSYMethodsToolsKit
     - ReactiveObjC
-  - HSYUIArchitectureToolsKit (0.1.2):
+  - HSYUIArchitectureToolsKit (0.1.3):
     - HSYMacroKit
     - HSYMethodsToolsKit
     - HSYNetworkToolsKit
@@ -99,7 +99,7 @@ SPEC CHECKSUMS:
   HSYMethodsToolsKit: 006c15c1e3eea651f19e455449f7525f5075530e
   HSYNetworkToolsKit: 48e6612ab617656db5a5e63ed08e253991e1d3af
   HSYToolsClassKit: 073d79d378e6d2a72861bf84bd954982a3f87b28
-  HSYUIArchitectureToolsKit: 2b391c4cc857145bde0310ba8d8ea2195e52975b
+  HSYUIArchitectureToolsKit: cccce724bb3b5ed9f13a4da8ba056d7cb7c7d633
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
