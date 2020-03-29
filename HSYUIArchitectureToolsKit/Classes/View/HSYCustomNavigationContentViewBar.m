@@ -42,7 +42,7 @@ NSInteger const kHSYDefaultCustomBarButtonItemForKeyB   = 9999999;
  
 + (UIBarButtonItem *)hsy_defaultImageBarButtonItem:(NSDictionary *)paramter clickedOnAction:(void (^)(UIButton *button, NSInteger tag))action
 {
-    return [UINavigationBar hsy_imageNavigationItems:@[@{@(kHSYDefaultCustomBarButtonItemForKeyA) : paramter}] leftEdgeInsets:WIDTHS_OF_SCALE(-kHSYCustomNavigationBarButtonForSize/4*3) subscribeNext:action].firstObject;
+    return [UINavigationBar hsy_imageNavigationItems:@[@{@(kHSYDefaultCustomBarButtonItemForKeyA) : paramter}] leftEdgeInsets:WIDTHS_OF_SCALE(-UINavigationBar.hsy_defaultCustomNavigationBarButtonSizes/4*3) subscribeNext:action].firstObject;
 }
 
 + (UIBarButtonItem *)hsy_defaultTitleBarButtonItem:(NSString *)title clickedOnAction:(void (^)(UIButton *button, NSInteger tag))action
@@ -57,7 +57,7 @@ NSInteger const kHSYDefaultCustomBarButtonItemForKeyB   = 9999999;
 
 + (NSArray *)hsy_defaultImageLeftBarButtonItem:(NSArray<NSDictionary *> *)paramterArr clickedOnAction:(void (^)(UIButton *button, NSInteger tag))action
 {
-    return [UINavigationBar hsy_imageNavigationItems:@[@{@(kHSYDefaultCustomBarButtonItemForKeyA) : paramterArr.firstObject},@{@(kHSYDefaultCustomBarButtonItemForKeyB) : paramterArr.lastObject}] leftEdgeInsets:WIDTHS_OF_SCALE(-kHSYCustomNavigationBarButtonForSize/4*3) subscribeNext:action];
+    return [UINavigationBar hsy_imageNavigationItems:@[@{@(kHSYDefaultCustomBarButtonItemForKeyA) : paramterArr.firstObject},@{@(kHSYDefaultCustomBarButtonItemForKeyB) : paramterArr.lastObject}] leftEdgeInsets:WIDTHS_OF_SCALE(-UINavigationBar.hsy_defaultCustomNavigationBarButtonSizes/4*3) subscribeNext:action];
 }
 
 #pragma mark - Load
