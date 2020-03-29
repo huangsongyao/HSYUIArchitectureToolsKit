@@ -15,3 +15,5 @@ target 'HSYUIArchitectureToolsKit_Example' do
     pod 'HSYToolsClassKit', :git=> 'https://github.com/huangsongyao/HSYToolsClassKit.git'
   end
 end
+
+#https://github.com/huangsongyao/HSYMethodsToolsKit.git,https://github.com/huangsongyao/HSYMacroKit.git,https://github.com/huangsongyao/HSYNetworkToolsKit.git,https://github.com/huangsongyao/HSYToolsClassKit.git
