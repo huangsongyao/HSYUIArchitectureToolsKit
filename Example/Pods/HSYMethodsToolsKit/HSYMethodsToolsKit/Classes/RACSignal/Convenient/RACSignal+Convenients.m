@@ -60,9 +60,14 @@
 
 + (RACSignal<NSError *> *)hsy_sendErrorSignal:(NSError *)error
 {
+    return [RACSignal hsy_sendErrorSignal:error afterDelays:0.0f];
+}
+
++ (RACSignal<NSError *> *)hsy_sendErrorSignal:(NSError *)error afterDelays:(NSTimeInterval)delays
+{
     return [RACSignal hsy_signalSubscriber:^(id<RACSubscriber>  _Nonnull subscriber) {
         [subscriber sendError:error];
-    }];
+    } afterDelays:delays];
 }
 
 #pragma mark - Performs

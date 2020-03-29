@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RACSignal (Combined)
 
 /**
- 返回合并zip信号的结果信号，signal为一个RACTuple元组，first表示zip信号成功时的result，类型是RACTuple元组，second表示zip信号失败时的message，类型是NSError
+ 返回合并zip信号的结果信号，signal为一个包含了RACTuple元组作为原生的list，该RACTuple元组的first表示next信号的x值，secondBlock表示errorBlock信号的error值
 
  @param signals 信号集
  @return zip信号
  */
-+ (RACSignal<RACTuple *> *)hsy_zipSignals:(NSArray<RACSignal *> *)signals;
++ (RACSignal<NSArray<RACTuple *> *> *)hsy_zipSignals:(NSArray<RACSignal *> *)signals;
 
 @end
 

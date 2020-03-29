@@ -46,8 +46,13 @@ static NSInteger const kHSYMethodsToolsButtonLoadingForMaskTags = 1993;
 @end
 
 @implementation UIButton (Loading)
-
+ 
 - (void)hsy_loadingButton:(UIColor *)maskColor forMap:(RACSignal *(^)(BOOL isAnimating))map
+{
+    [self hsy_loadingButton:maskColor forMap:map resetStateFinished:^(UIButton *button) {}];
+}
+
+- (void)hsy_loadingButton:(UIColor *)maskColor forMap:(RACSignal *(^)(BOOL isAnimating))map resetStateFinished:(void(^)(UIButton *button))reset
 {
     //点击后，首先先禁用按钮的交互状态
     self.userInteractionEnabled = NO;
@@ -108,6 +113,9 @@ static NSInteger const kHSYMethodsToolsButtonLoadingForMaskTags = 1993;
                 self.frame = origin;
                 //恢复按钮的交互事件
                 self.userInteractionEnabled = YES;
+                if (reset) {
+                    reset(self);
+                }
             }
         }];
     }

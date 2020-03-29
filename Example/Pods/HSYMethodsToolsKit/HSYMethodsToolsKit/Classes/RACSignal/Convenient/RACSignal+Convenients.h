@@ -74,6 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (RACSignal<NSError *> *)hsy_sendErrorSignal:(NSError *)error;
 
+/// 创建一个管道，延迟delays秒后来快速发送一个error冷信号
+/// @param error 错误信息
+/// @param delays RACSignal<NSError *> *
++ (RACSignal<NSError *> *)hsy_sendErrorSignal:(NSError *)error afterDelays:(NSTimeInterval)delays;
+
 #pragma mark - Performs
 
 /**

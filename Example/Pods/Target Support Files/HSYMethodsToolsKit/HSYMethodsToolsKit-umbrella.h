@@ -11,6 +11,7 @@
 #endif
 
 #import "NSArray+Finder.h"
+#import "NSArray+GridsAlgorithm.h"
 #import "NSBundle+CFBundle.h"
 #import "NSBundle+PrivateFileResource.h"
 #import "NSData+Encrypt.h"
@@ -41,6 +42,7 @@
 #import "UIImage+Canvas.h"
 #import "UIImage+Compression.h"
 #import "UIImage+Formatter.h"
+#import "UIImage+MixColors.h"
 #import "UIImageView+UrlString.h"
 #import "UIImageView+ZoomScale.h"
 #import "UILabel+AttributedString.h"
@@ -52,8 +54,10 @@
 #import "UIScrollView+Pages.h"
 #import "UITableView+Operations.h"
 #import "UITextField+UIKit.h"
+#import "UITextView+Calculated.h"
 #import "UITextView+UIKit.h"
 #import "UIView+Frame.h"
+#import "UIView+GradientColor.h"
 #import "UIView+Layer.h"
 #import "UIView+Rotated.h"
 #import "UIView+Snaps.h"

@@ -49,6 +49,15 @@
     if (thisBundleName.length) {
         associateBundleURL = [associateBundleURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.bundle", thisBundleName]];
     }
+    if (!associateBundleURL) {
+        NSString *pluginName = @"HSYUIArchitectureToolsKit";
+        NSBundle *realAssociateBundle = [NSBundle bundleWithURL:[[[[NSBundle mainBundle] URLForResource:@"Frameworks" withExtension:nil] URLByAppendingPathComponent:pluginName] URLByAppendingPathComponent:@"framework"]];
+        associateBundleURL = [realAssociateBundle URLForResource:pluginName withExtension:@"bundle"];
+    }
+    
+    if (!associateBundleURL) {
+        associateBundleURL = [NSURL fileURLWithPath:@"file:///"];
+    }
     NSBundle *resourceBundle = [NSBundle bundleWithURL:associateBundleURL];
     
     return resourceBundle;

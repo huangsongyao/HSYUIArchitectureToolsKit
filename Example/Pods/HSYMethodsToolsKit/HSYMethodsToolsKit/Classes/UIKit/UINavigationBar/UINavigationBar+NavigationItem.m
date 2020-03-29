@@ -60,11 +60,17 @@
 + (UIButton *)hsy_buttonWithEdgeInsets:(CGFloat)left forButtonTag:(NSInteger)tag clickedOnAction:(void (^)(UIButton *button))action
 {
     UIButton *barButton = [UIButton hsy_buttonWithAction:action];
-    barButton.size = CGSizeMake(kHSYCustomNavigationBarButtonForSize, kHSYCustomNavigationBarButtonForSize); 
+    CGFloat sizes = self.class.hsy_defaultCustomNavigationBarButtonSizes;
+    barButton.size = CGSizeMake(sizes, sizes);
     barButton.contentEdgeInsets = UIEdgeInsetsMake(0.0f, left, 0.0f, 0.0f);
     barButton.tag = tag;
     
     return barButton;
+}
+
++ (CGFloat)hsy_defaultCustomNavigationBarButtonSizes
+{
+    return 44.0f;
 }
 
 @end

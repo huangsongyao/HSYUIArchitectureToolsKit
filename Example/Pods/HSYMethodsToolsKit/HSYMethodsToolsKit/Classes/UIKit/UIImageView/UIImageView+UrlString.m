@@ -37,6 +37,12 @@
     if (![urlString hasPrefix:@"http"]) {
         //如果请求链接不是以http开头的远程地址，则尝试拆分，看看链接是否为本地图片资源地址
         NSLog(@"\n warning! --> 图片请求地址不是完整的url链接，将尝试将该链接视为file path，urlString为：%@", urlString);
+        UIImage *image = [UIImage imageNamed:urlString];
+        if (image) {
+            self.image = image;
+            self.highlightedImage = image;
+            return;
+        }
         NSArray *urls = [urlString componentsSeparatedByString:@"."];
         if (urls.count > 0) {
             NSArray *suffixs = @[

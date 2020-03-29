@@ -16,7 +16,7 @@
         return CGSizeZero;
     }
     CGFloat heights = (maxSize.height > 0.0f ? maxSize.height : MAXFLOAT);
-    CGFloat widths = (maxSize.width > 0.0f ? maxSize.width : 100);
+    CGFloat widths = (maxSize.width > 0.0f ? maxSize.width : MAXFLOAT);
     NSDictionary *paramters = @{NSFontAttributeName : font};
     return [string boundingRectWithSize:CGSizeMake(widths, heights)
                                 options:(NSStringDrawingTruncatesLastVisibleLine |

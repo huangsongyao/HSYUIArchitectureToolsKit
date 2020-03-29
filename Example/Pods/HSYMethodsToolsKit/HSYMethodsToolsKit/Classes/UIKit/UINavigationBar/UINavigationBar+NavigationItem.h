@@ -9,8 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-CGFloat const kHSYCustomNavigationBarButtonForSize                          = 44.0f;
-
 @interface UINavigationBar (NavigationItem)
 
 /**
@@ -36,6 +34,10 @@ CGFloat const kHSYCustomNavigationBarButtonForSize                          = 44
 + (NSArray<UIBarButtonItem *> *)hsy_titleNavigationItems:(NSArray<NSDictionary<NSDictionary<NSNumber *, UIFont *> *, NSDictionary<NSString *, UIColor *> *> *> *)paramters
                                           leftEdgeInsets:(CGFloat)left
                                            subscribeNext:(void(^)(UIButton *button, NSInteger tag))next;
+
+/// 默认的导航栏size
++ (CGFloat)hsy_defaultCustomNavigationBarButtonSizes;
+
 
 @end
 
